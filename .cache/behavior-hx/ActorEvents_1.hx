@@ -61,7 +61,7 @@ import com.stencyl.graphics.shaders.BloomShader;
 
 
 
-class ActorEvents_27 extends ActorScript
+class ActorEvents_1 extends ActorScript
 {
 	
 	
@@ -74,12 +74,13 @@ class ActorEvents_27 extends ActorScript
 	override public function init()
 	{
 		
-		/* =========================== On Actor =========================== */
-		addMouseOverActorListener(actor, function(mouseState:Int, list:Array<Dynamic>):Void
+		/* =========================== Keyboard =========================== */
+		addKeyStateListener("up", function(pressed:Bool, released:Bool, list:Array<Dynamic>):Void
 		{
-			if(wrapper.enabled && 3 == mouseState)
+			if(wrapper.enabled && pressed)
 			{
-				exitGame();
+				actor.shout("_customEvent_" + "PCDeath");
+				recycleActor(actor);
 			}
 		});
 		
