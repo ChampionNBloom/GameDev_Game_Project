@@ -63,12 +63,15 @@ import com.stencyl.graphics.shaders.BloomShader;
 
 class Design_1_1_DieWhenHit extends ActorScript
 {
+	public var _ExplosionForce:Float;
 	
 	
 	public function new(dummy:Int, actor:Actor, dummy2:Engine)
 	{
 		super(actor);
 		nameMap.set("Actor", "actor");
+		nameMap.set("Explosion Force", "_ExplosionForce");
+		_ExplosionForce = 1.0;
 		
 	}
 	

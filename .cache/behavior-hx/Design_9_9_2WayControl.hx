@@ -72,8 +72,7 @@ class Design_9_9_2WayControl extends ActorScript
 	public var decel:Float;
 	public function _customEvent_moveRight():Void
 	{
-		actor.setXVelocity(topSpeed);
-		dir = 4;
+		actor.setAngularVelocity(Utils.RAD * (90));
 	}
 	public function _customEvent_checkInput():Void
 	{
@@ -82,8 +81,7 @@ class Design_9_9_2WayControl extends ActorScript
 	}
 	public function _customEvent_moveLeft():Void
 	{
-		actor.setXVelocity(-(topSpeed));
-		dir = 3;
+		actor.setAngularVelocity(Utils.RAD * (-90));
 	}
 	
 	
@@ -108,6 +106,15 @@ class Design_9_9_2WayControl extends ActorScript
 	
 	override public function init()
 	{
+		
+		/* =========================== Keyboard =========================== */
+		addKeyStateListener("left", function(pressed:Bool, released:Bool, list:Array<Dynamic>):Void
+		{
+			if(wrapper.enabled && released)
+			{
+				actor.setAngularVelocity(Utils.RAD * (0));
+			}
+		});
 		
 		/* ======================== When Updating ========================= */
 		addWhenUpdatedListener(null, function(elapsedTime:Float, list:Array<Dynamic>):Void
@@ -143,6 +150,15 @@ class Design_9_9_2WayControl extends ActorScript
 						actor.setXVelocity(-(topSpeed));
 					}
 				}
+			}
+		});
+		
+		/* =========================== Keyboard =========================== */
+		addKeyStateListener("right", function(pressed:Bool, released:Bool, list:Array<Dynamic>):Void
+		{
+			if(wrapper.enabled && released)
+			{
+				actor.setAngularVelocity(Utils.RAD * (0));
 			}
 		});
 		
